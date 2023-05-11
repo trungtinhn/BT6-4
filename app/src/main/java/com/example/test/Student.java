@@ -4,15 +4,15 @@ public class Student {
     private String Name;
     private String Date;
     private String Class;
-
     private int idImage;
     private String[] ListSubject;
-    public Student(String Name,String Date, String Class, String[] ListSubject)
+    public Student(String Name,String Date, String Class, String[] ListSubject, int idImage)
     {
         this.Name = Name;
         this.Date = Date;
         this.Class = Class;
         this.ListSubject = ListSubject;
+        this.idImage = idImage;
     }
     public String getName()
     {

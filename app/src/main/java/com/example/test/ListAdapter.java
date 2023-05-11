@@ -1,10 +1,10 @@
 package com.example.test;
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,29 +14,36 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 public class ListAdapter extends ArrayAdapter<Student> {
+    Activity Context;
+    int IdLayout;
+    ArrayList<Student> mylist;
+    public ListAdapter(Activity context, int idLayout, ArrayList<Student> studentArrayList){
+        super(context, idLayout, studentArrayList);
+        this.Context = context;
+        IdLayout = idLayout;
+        this.mylist = studentArrayList;
 
-    public ListAdapter(Context context, ArrayList<Student> studentArrayList){
-        super(context, R.layout.custom_item, studentArrayList);
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Student student = getItem(position);
+        LayoutInflater mylayout = Context.getLayoutInflater();
 
-        if(convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.custom_item,parent, false);
-        }
+        convertView = mylayout.inflate(IdLayout, null);
+
+        Student student = mylist.get(position);
+
         ImageView image = convertView.findViewById(R.id.image);
         TextView name = convertView.findViewById(R.id.name);
         TextView date = convertView.findViewById(R.id.date);
-        TextView classstudent= convertView.findViewById(R.id.classstudent);
+        TextView classtudent = convertView.findViewById(R.id.classtudent);
 
         image.setImageResource(student.getId());
         name.setText(student.getName());
         date.setText(student.getDate());
-        classstudent.setText(student.getclass());
+        classtudent.setText(student.getclass());
 
-        return super.getView(position, convertView, parent);
+        return convertView;
     }
 }
