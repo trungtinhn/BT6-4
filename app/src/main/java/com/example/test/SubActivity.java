@@ -21,9 +21,9 @@ public class SubActivity extends AppCompatActivity {
         name = findViewById(R.id.name);
         date = findViewById(R.id.date);
         Class = findViewById(R.id.classtudent);
-        lv1 = findViewById(R.id.ListView1);
+        lv1 = findViewById(R.id.ListView);
 
-        Intent myintent = getIntent();
+        Intent myintent = this.getIntent();
         String Name = myintent.getStringExtra("name");
         int id = myintent.getIntExtra("idImage", R.drawable.lucas1);
         String Date = myintent.getStringExtra("date");
